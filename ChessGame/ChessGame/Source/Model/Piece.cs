@@ -84,12 +84,12 @@ namespace ChessGame.Source {
         }
 
         /// <summary>
-        /// Returns all the possible position for the piece depending on the
-        /// position given as an argument.
+        /// Modifies the Board (BoardSpace isPossibleDestination variable) 
+        /// depeding on the position given in argument.
         /// </summary>
-        /// <param name="position"> Array with x and y value of piece's position </param>
-        /// <returns>A jagged array of all the possible positions for the piece</returns>
-        public abstract int[][] getDestinations(int[] position);
+        /// <param name="posX"> Position on X axis.</param>
+        /// <param name="posY"> Position on Y axis.</param>
+        public abstract void getDestinations(int posX, int posY);
 
     }
 

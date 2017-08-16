@@ -57,6 +57,7 @@
     <Compile Include="Source\GameController.cs" />
     <Compile Include="Source\Model\Bishop.cs" />
     <Compile Include="Source\Model\Board.cs" />
+    <Compile Include="Source\Model\BoardSpace.cs" />
     <Compile Include="Source\Model\King.cs" />
     <Compile Include="Source\Model\Knight.cs" />
     <Compile Include="Source\Model\Pawn.cs" />

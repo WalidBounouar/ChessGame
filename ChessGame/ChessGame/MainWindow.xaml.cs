@@ -1,6 +1,8 @@
 ﻿using ChessGame.Source;
+using ChessGame.Source.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,9 @@ namespace ChessGame {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+
+            BoardSpace test;
+            Debug.WriteLine("dsd");
         }
     }
 }

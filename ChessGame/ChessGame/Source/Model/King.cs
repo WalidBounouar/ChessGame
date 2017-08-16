@@ -8,8 +8,12 @@ namespace ChessGame.Source.Model {
 
     class King : Piece {
 
+        public King(Board board, string type, char icon, int color) : base(board, type, icon, color) {
+        }
 
-
+        public override void getDestinations(int posX, int posY) {
+            throw new NotImplementedException();
+        }
     }
 
 }

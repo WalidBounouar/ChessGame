@@ -23,9 +23,6 @@ namespace ChessGame {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-
-            BoardSpace test;
-            Debug.WriteLine("dsd");
         }
     }
 }

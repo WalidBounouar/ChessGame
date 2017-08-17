@@ -73,6 +73,7 @@ namespace ChessGame.Source.Model {
             return output;
         }
 
+        /*
         /// <summary>
         /// Constructor in case the BoardSpace is created with a Piece.
         /// </summary>
@@ -88,6 +89,7 @@ namespace ChessGame.Source.Model {
             }
 
         }
+        */
 
     }
 

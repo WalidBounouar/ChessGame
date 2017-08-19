@@ -87,7 +87,7 @@ namespace ChessGame.Source {
             return this.board[posX][posY];
         }
 
-        private void killPiece(int posX, int posY) {
+        public void killPiece(int posX, int posY) { //fix duplicate keys problem
 
             Piece tmp = this.board[posX][posY].Piece;
             int color = tmp.Color;
@@ -105,7 +105,68 @@ namespace ChessGame.Source {
 
         }
 
-        
+        /// <summary>
+        /// String representation of the state of the Board.
+        /// </summary>
+        /// <returns> String representing the Board. </returns>
+        public string toString() {
+
+            StringBuilder output = new StringBuilder();
+
+            output.Append(this.dictionaryToString(this.deadBlacks) + "\n");
+
+            output.Append("┌────┬────┬────┬────┬────┬────┬────┬────┐" + "\n");
+
+            for (int i = 0; i < (Board.GAMESIZE * 2) - 1; i++) {
+
+                if (i % 2 == 0) {
+
+                    output.Append("│");
+
+                    for (int j = 0; j < Board.GAMESIZE; j++) {
+
+                        if (this.board[j][(i / 2)].Occupied) {
+                            output.Append(" " + this.board[j][(i / 2)].Piece.Icon + " │");
+                        } else {
+                            output.Append("    │");
+                        }
+
+                    }
+
+                    output.Append("\n");
+
+                } else {
+                    output.Append("├────┼────┼────┼────┼────┼────┼────┼────┤" + "\n");
+                }
+
+            }
+
+            output.Append("└────┴────┴────┴────┴────┴────┴────┴────┘" + "\n");
+
+            output.Append(this.dictionaryToString(this.deadWhites) + "\n");
+
+            return output.ToString();
+        }
+
+        /// <summary>
+        /// Helper method that returns personalized string of a dictionary.
+        /// Used to get string reprensation of dead pieces.
+        /// </summary>
+        /// <param name="dictionary"> The dictionary to convert to string. </param>
+        /// <returns> String representation of the ditionary in argument. </returns>
+        private string dictionaryToString(Dictionary<string, Piece> dictionary) {
+
+            StringBuilder output = new StringBuilder();
+
+            foreach (var piece in dictionary.Values) {
+
+                output.Append(" " + piece.Icon + " ");
+
+            }
+
+            return output.ToString();
+
+        }
 
     }
 

@@ -31,10 +31,13 @@ namespace ChessGame.Source {
         /// </summary>
         public Board() {
 
+            //initializing the jagged array
             this.board = new BoardSpace[8][];
             for (int i = 0; i < this.board.Length; i++) {
                 this.board[i] = new BoardSpace[8];
             }
+
+            
 
         }
 

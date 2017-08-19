@@ -8,7 +8,16 @@ namespace ChessGame.Source.Model {
 
     class Rook : Piece {
 
-        public Rook(Board board, string type, char icon, int color) : base(board, type, icon, color) {
+        public Rook(Board board, int color) : base(board, color) {
+
+            base.type = "rook";
+
+            if (color == 0) {
+                base.icon = '\u2656';
+            } else {
+                base.icon = '\u265c'; //might be u265C
+            }
+
         }
 
         public override void getDestinations(int posX, int posY) {

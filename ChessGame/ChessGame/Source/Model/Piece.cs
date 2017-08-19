@@ -16,7 +16,7 @@ namespace ChessGame.Source {
         /// <summary>
         /// The type of Piece : rook, queen, king, etc.
         /// </summary>
-        private string type;
+        protected string type;
         
         /// <summary>
         /// Access to type variable. Get only.
@@ -28,7 +28,7 @@ namespace ChessGame.Source {
         /// <summary>
         /// The character user to represent the Piece.
         /// </summary>
-        private char icon;
+        protected char icon;
 
         /// <summary>
         /// Access to icon variable. Get Only.
@@ -70,14 +70,10 @@ namespace ChessGame.Source {
         /// Constructor for a Piece.
         /// </summary>
         /// <param name="board"> The Board on which the Piece exists. </param>
-        /// <param name="type"> The type of piece : rook, queen, king, etc. </param>
-        /// <param name="icon"> The character user to represent the Piece. </param>
         /// <param name="color"> The color of the Piece. 0 --> white and 1 --> black </param>
-        public Piece(Board board, string type, char icon, int color ) {
+        public Piece(Board board, int color ) {
 
             this.board = board;
-            this.type = type;
-            this.icon = icon;
             this.color = color;
             this.alive = true; //By default, a Piece is alive when created.
 

@@ -31,7 +31,15 @@ namespace ChessGame.Source.Model {
         /// </summary>
         public Piece Piece {
             get { return piece;  }
-            set { piece = value; }
+            set {
+                piece = value;
+
+                if (value == null) {
+                    this.occupied = false;
+                } else {
+                    this.occupied = true;
+                }
+            }
         }
 
         /// <summary>

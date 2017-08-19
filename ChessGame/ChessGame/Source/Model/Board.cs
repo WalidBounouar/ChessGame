@@ -24,12 +24,11 @@ namespace ChessGame.Source {
         private BoardSpace[][] board;
 
         /// <summary>
-        /// Dictionaries containing the dead Piece.
-        /// A Dictionary might be overkill, but I wanted to play with Collections.
-        /// Key will be the Piece's type (string)
+        /// List containing the dead Piece.
+        /// A List might be overkill, but I wanted to play with Collections.
         /// </summary>
-        private Dictionary<string, Piece> deadBlacks;
-        private Dictionary<string, Piece> deadWhites;
+        private LinkedList<Piece> deadBlacks;
+        private LinkedList<Piece> deadWhites;
 
         /// <summary>
         /// Board contructor.
@@ -37,8 +36,8 @@ namespace ChessGame.Source {
         public Board() {
 
             //initializing the dictionaries (deadpieces)
-            this.deadBlacks = new Dictionary<string, Piece>();
-            this.deadWhites = new Dictionary<string, Piece>();
+            this.deadBlacks = new LinkedList<Piece>();
+            this.deadWhites = new LinkedList<Piece>();
 
             //initializing the jagged array
             this.board = new BoardSpace[Board.GAMESIZE][];
@@ -93,12 +92,23 @@ namespace ChessGame.Source {
             int color = tmp.Color;
             tmp.Alive = false;
 
-            if (color == 0) {
-                this.deadWhites.Add(tmp.Type, tmp);
-            } else {
-                this.deadBlacks.Add(tmp.Type, tmp);
-            }
+            //King are added in front to make the search for Kings more efficient
+            //as it will happen often.
+            if ( tmp.Type.Equals("king") ) {
 
+                if (color == 0) {
+                    this.deadWhites.AddFirst(tmp);
+                } else {
+                    this.deadBlacks.AddFirst(tmp);
+                }
+            } else {
+                if (color == 0) {
+                    this.deadWhites.AddLast(tmp);
+                } else {
+                    this.deadBlacks.AddLast(tmp);
+                }
+            }
+            
             this.board[posX][posY].Piece = null; //maybe replace by a custom method
             this.board[posX][posY].Occupied = false; //maybe replace by a custom method
             this.board[posX][posY].IsPossibleDestination = false; //remove if you take care during view update method
@@ -113,7 +123,7 @@ namespace ChessGame.Source {
 
             StringBuilder output = new StringBuilder();
 
-            output.Append(this.dictionaryToString(this.deadBlacks) + "\n");
+            output.Append(this.deadPiecesToString(this.deadBlacks) + "\n");
 
             output.Append("┌────┬────┬────┬────┬────┬────┬────┬────┐" + "\n");
 
@@ -143,22 +153,22 @@ namespace ChessGame.Source {
 
             output.Append("└────┴────┴────┴────┴────┴────┴────┴────┘" + "\n");
 
-            output.Append(this.dictionaryToString(this.deadWhites) + "\n");
+            output.Append(this.deadPiecesToString(this.deadWhites) + "\n");
 
             return output.ToString();
         }
 
         /// <summary>
-        /// Helper method that returns personalized string of a dictionary.
+        /// Helper method that returns personalized string of a LinkedList.
         /// Used to get string reprensation of dead pieces.
         /// </summary>
-        /// <param name="dictionary"> The dictionary to convert to string. </param>
-        /// <returns> String representation of the ditionary in argument. </returns>
-        private string dictionaryToString(Dictionary<string, Piece> dictionary) {
+        /// <param name="deadPieces"> The LinkedList to convert to string. </param>
+        /// <returns> String representation of the LinkedList in argument. </returns>
+        private string deadPiecesToString(LinkedList<Piece> deadPieces) {
 
             StringBuilder output = new StringBuilder();
 
-            foreach (var piece in dictionary.Values) {
+            foreach (Piece piece in deadPieces) {
 
                 output.Append(" " + piece.Icon + " ");
 

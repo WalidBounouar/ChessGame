@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessGame;
 
 namespace ChessGame.Source {
 
@@ -19,22 +20,27 @@ namespace ChessGame.Source {
         private TextView textView;
 
         /// <summary>
+        /// The MainWindow of the app.
+        /// </summary>
+        private MainWindow mainWindow;
+
+        /// <summary>
         /// The player at the moment
         /// 0 --> white
         /// 1 --> black
         /// </summary>
         private int turn;
 
-        public GameController() {
+        /*
+        public GameController(MainWindow mainWindow) {
 
+            this.mainWindow = mainWindow;
             this.board = new Board();
-            this.textView = new TextView(this.board, this);
+            this.textView = new TextView(this.board, this, this.mainWindow);
 
             this.turn = 0; //white starts
 
-        }
-
-
+        }*/
 
     }
 

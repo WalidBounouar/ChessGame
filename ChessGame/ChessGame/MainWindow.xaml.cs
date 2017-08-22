@@ -21,16 +21,28 @@ namespace ChessGame {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        /// <summary>
+        /// Game model - Board class
+        /// </summary>
+        private Board boardModel;
+
+        /// <summary>
+        /// The player at the moment
+        /// 0 --> white
+        /// 1 --> black
+        /// </summary>
+        private int turn;
+
         public MainWindow() {
 
             InitializeComponent();
 
-            Board test = new Board();
-
-            string testString = test.toString();
-
-            Debug.WriteLine(testString);
+            this.boardModel = new Board();
+            Debug.WriteLine(this.boardModel.toString());
 
         }
+        
     }
+
 }

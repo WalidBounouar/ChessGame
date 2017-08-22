@@ -125,33 +125,35 @@ namespace ChessGame.Source {
 
             output.Append(this.deadPiecesToString(this.deadBlacks) + "\n");
 
-            output.Append("┌────┬────┬────┬────┬────┬────┬────┬────┐" + "\n");
+            output.Append("    a    b    c    d    e    f    g   h" + "\n");
 
-            for (int i = 0; i < (Board.GAMESIZE * 2) - 1; i++) {
+            output.Append("  ┌────┬────┬────┬────┬────┬────┬────┬────┐" + "\n");
 
-                if (i % 2 == 0) {
+            for (int i = (Board.GAMESIZE * 2) - 1; i > 0; i--) {
 
-                    output.Append("│");
+                if (i % 2 != 0) {
+
+                    output.Append((i / 2) + 1 + " ");
 
                     for (int j = 0; j < Board.GAMESIZE; j++) {
 
                         if (this.board[j][(i / 2)].Occupied) {
-                            output.Append(" " + this.board[j][(i / 2)].Piece.Icon + " │");
+                            output.Append("│ " + this.board[j][(i / 2)].Piece.Icon + " ");
                         } else {
-                            output.Append("    │");
+                            output.Append("│    ");
                         }
 
                     }
 
-                    output.Append("\n");
+                    output.Append("│\n");
 
                 } else {
-                    output.Append("├────┼────┼────┼────┼────┼────┼────┼────┤" + "\n");
+                    output.Append("  ├────┼────┼────┼────┼────┼────┼────┼────┤" + "\n");
                 }
 
             }
 
-            output.Append("└────┴────┴────┴────┴────┴────┴────┴────┘" + "\n");
+            output.Append("  └────┴────┴────┴────┴────┴────┴────┴────┘" + "\n");
 
             output.Append(this.deadPiecesToString(this.deadWhites) + "\n");
 

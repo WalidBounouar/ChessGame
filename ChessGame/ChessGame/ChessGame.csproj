@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Source\boardButton.cs" />
     <Compile Include="Source\GameController.cs" />
     <Compile Include="Source\Model\Bishop.cs" />
     <Compile Include="Source\Model\Board.cs" />

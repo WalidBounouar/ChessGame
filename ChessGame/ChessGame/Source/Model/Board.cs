@@ -137,7 +137,11 @@ namespace ChessGame.Source {
 
                     for (int j = 0; j < Board.GAMESIZE; j++) {
 
-                        if (this.board[j][(i / 2)].Occupied) {
+                        if (this.board[j][(i / 2)].Occupied && this.board[j][(i / 2)].IsPossibleDestination) {
+                            output.Append("│ X  ");
+                        } else if (this.board[j][(i / 2)].IsPossibleDestination) {
+                            output.Append("│ x  ");
+                        } else if (this.board[j][(i / 2)].Occupied) {
                             output.Append("│ " + this.board[j][(i / 2)].Piece.Icon + " ");
                         } else {
                             output.Append("│    ");

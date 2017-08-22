@@ -68,14 +68,10 @@ namespace ChessGame.Source.Model {
         /// <returns> The appriate char reprsenting the state of the BoardSpace.</returns>
         public char getBoardSpaceChar() {
 
-            char output = ' ';
+            char output = '-';
 
-            if (this.occupied && this.isPossibleDestination) {
-                output =  'X';
-            } else if (this.isPossibleDestination) {
-                output =  'x';
-            } else if (this.occupied) {
-                output =  this.piece.Icon;
+            if (this.occupied) {
+                output = this.piece.Icon;
             }
 
             return output;

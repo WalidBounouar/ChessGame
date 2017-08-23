@@ -13,6 +13,10 @@ namespace ChessGame.Source {
         /// </summary>
         private Board board;
 
+        protected Board Board {
+            get { return board; }
+        }
+
         /// <summary>
         /// The type of Piece : rook, queen, king, etc.
         /// </summary>

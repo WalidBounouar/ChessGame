@@ -34,12 +34,44 @@ namespace ChessGame {
         /// </summary>
         private int turn;
 
+        /// <summary>
+        /// Jagged array for all the buttons on the board.
+        /// </summary>
+        private BoardButton[][] buttonArray;
+
         public MainWindow() {
 
             InitializeComponent();
 
             this.boardModel = new Board();
-            Debug.WriteLine(this.boardModel.toString());
+            Debug.WriteLine(this.boardModel.toString()); //REMOVE WHEN DONE
+
+            this.turn = 0; //white starts
+
+            //initializing the buttonArray
+            this.buttonArray = new BoardButton[Board.GAMESIZE][]; //Change Game size
+            for (int i = 0; i < this.buttonArray.Length; i++) {
+                this.buttonArray[i] = new BoardButton[Board.GAMESIZE];
+            }
+
+            //creating the buttons for the board.
+            for (int i = 0; i < this.buttonArray.Length; i++) {
+                for (int j = 0; j < this.buttonArray.Length; j++) {
+
+                    string name = "space" + i + j;
+
+                    BoardSpace correspondingSpace = this.boardModel.getBoardSpace(i, j);
+
+                    BoardButton presentButton = new BoardButton(i, j, name, correspondingSpace);
+                    int realJ = (j - this.buttonArray.Length + 1) * -1; //to fix grid y axis problem
+
+                    Grid.SetColumn(presentButton, i);
+                    Grid.SetRow(presentButton, realJ);
+                    this.boardGrid.Children.Add(presentButton);
+
+                }
+
+            }
 
         }
         

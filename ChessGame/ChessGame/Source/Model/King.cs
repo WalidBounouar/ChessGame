@@ -21,7 +21,39 @@ namespace ChessGame.Source.Model {
         }
 
         public override void getDestinations(int posX, int posY) {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            //jagged array of all 8 possible destinations
+            int[][] possibleDestinations = new int[][] { 
+                new int [] {posX, posY + 1 },
+                new int [] {posX, posY - 1 },
+                new int [] {posX + 1, posY },
+                new int [] {posX - 1, posY },
+                new int [] {posX + 1, posY + 1 },
+                new int [] {posX + 1, posY - 1 },
+                new int [] {posX - 1, posY + 1 },
+                new int [] {posX -1, posY - 1 }
+            };
+
+            int tmpX;
+            int tmpY;
+            BoardSpace tmpSpace;
+
+            foreach (int[] pos in possibleDestinations) {
+
+                tmpX = pos[0];
+                tmpY = pos[1];
+
+                if (tmpX >= 0 && tmpX < Board.GAMESIZE 
+                    && tmpX >= 0 && tmpX < Board.GAMESIZE) {
+
+                    tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                    tmpSpace.IsPossibleDestination = true;
+
+                }
+
+            }
+
         }
     }
 

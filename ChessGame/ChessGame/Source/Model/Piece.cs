@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessGame.Source {
+namespace ChessGame.Source.Model {
 
      abstract class Piece {
 
@@ -112,6 +112,6 @@ namespace ChessGame.Source {
         /// <param name="posY"> Position on Y axis.</param>
         public abstract void getDestinations(int posX, int posY);
 
-    }
+     }
 
 }

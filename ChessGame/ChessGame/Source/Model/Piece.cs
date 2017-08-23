@@ -71,6 +71,19 @@ namespace ChessGame.Source {
         }
 
         /// <summary>
+        /// Boolean showing if the Piece was played once.
+        /// </summary>
+        private bool played;
+
+        /// <summary>
+        /// Access method for played variable.
+        /// Read only.
+        /// </summary>
+        public bool Played {
+            get { return this.played; }
+        }
+
+        /// <summary>
         /// Constructor for a Piece.
         /// </summary>
         /// <param name="board"> The Board on which the Piece exists. </param>
@@ -80,7 +93,15 @@ namespace ChessGame.Source {
             this.board = board;
             this.color = color;
             this.alive = true; //By default, a Piece is alive when created.
+            this.played = false; ///By default, a Piece has not been played once.
 
+        }
+
+        /// <summary>
+        /// Changes played variable to true.
+        /// </summary>
+        public void playedOnce() {
+            this.played = true;
         }
 
         /// <summary>

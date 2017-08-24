@@ -49,6 +49,8 @@ namespace ChessGame {
             this.turn = 0; //white starts
             this.showTurn();
 
+            this.updateDeadPiecesViews();
+
             //initializing the buttonArray
             this.buttonArray = new BoardButton[Board.GAMESIZE][]; //Change Game size
             for (int i = 0; i < this.buttonArray.Length; i++) {
@@ -99,13 +101,36 @@ namespace ChessGame {
 
         }
 
-        void boardButton_Click(object sender, RoutedEventArgs e) {
+        private void boardButton_Click(object sender, RoutedEventArgs e) {
             //throw new NotImplementedException();            
 
             BoardButton clickedButton = sender as BoardButton;
             Debug.WriteLine(clickedButton.Name);
             
 
+        }
+
+        /// <summary>
+        /// Updated the TextBlocks that shows the dead Pieces.
+        /// </summary>
+        private void updateDeadPiecesViews() {
+
+
+            StringBuilder deadWhitesString = new StringBuilder();
+
+            foreach (Piece piece in this.boardModel.DeadWhites) {
+                deadWhitesString.Append(" " + piece.Icon + " ");
+            }
+
+            this.deadWhitesView.Text = deadWhitesString.ToString();
+
+            StringBuilder deadBlacksString = new StringBuilder();
+
+            foreach (Piece piece in this.boardModel.DeadBlacks) {
+                deadBlacksString.Append(" " + piece.Icon + " ");
+            }
+
+            this.deadBlacksView.Text = deadBlacksString.ToString();
         }
 
     }

@@ -29,6 +29,13 @@ namespace ChessGame.Source.Model {
         private LinkedList<Piece> deadBlacks;
         private LinkedList<Piece> deadWhites;
 
+        public LinkedList<Piece> DeadBlacks {
+            get { return this.deadBlacks; }
+        }
+        public LinkedList<Piece> DeadWhites {
+            get { return this.deadWhites; }
+        }
+
         /// <summary>
         /// Board contructor.
         /// </summary>

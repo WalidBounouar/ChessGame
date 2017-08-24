@@ -63,18 +63,37 @@ namespace ChessGame {
                     BoardSpace correspondingSpace = this.boardModel.getBoardSpace(i, j);
 
                     BoardButton presentButton = new BoardButton(i, j, name, correspondingSpace);
+                    
+                    if (!correspondingSpace.Occupied
+                        || correspondingSpace.Piece.Color != this.turn) {
+
+                        presentButton.IsEnabled = false;
+
+                    }
+
                     int realJ = (j - this.buttonArray.Length + 1) * -1; //to fix grid y axis problem
 
                     Grid.SetColumn(presentButton, i);
                     Grid.SetRow(presentButton, realJ);
                     this.boardGrid.Children.Add(presentButton);
 
+                    presentButton.AddHandler(BoardButton.ClickEvent, new RoutedEventHandler(boardButton_Click)); //Adding eventHandler
+
                 }
 
             }
 
         }
-        
+
+        void boardButton_Click(object sender, RoutedEventArgs e) {
+            //throw new NotImplementedException();            
+
+            BoardButton clickedButton = sender as BoardButton;
+            Debug.WriteLine(clickedButton.Name);
+            
+
+        }
+
     }
 
 }

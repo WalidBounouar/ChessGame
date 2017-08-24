@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessGame;
+using ChessGame.Source.Model;
 
 namespace ChessGame.Source {
 

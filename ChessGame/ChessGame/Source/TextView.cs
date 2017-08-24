@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using ChessGame;
 using System.Windows;
+using ChessGame.Source.Model;
 
 namespace ChessGame.Source {
 

@@ -47,6 +47,7 @@ namespace ChessGame {
             Debug.WriteLine(this.boardModel.toString()); //REMOVE WHEN DONE
 
             this.turn = 0; //white starts
+            this.showTurn();
 
             //initializing the buttonArray
             this.buttonArray = new BoardButton[Board.GAMESIZE][]; //Change Game size
@@ -81,6 +82,19 @@ namespace ChessGame {
 
                 }
 
+            }
+
+        }
+
+        /// <summary>
+        /// Updated the view to show who's turn it is.
+        /// </summary>
+        private void showTurn() {
+
+            if (this.turn == 0) {
+                this.turnDisplay.Text = "White Turn";
+            } else {
+                this.turnDisplay.Text = "Black Turn";
             }
 
         }

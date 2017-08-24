@@ -40,6 +40,11 @@
 
         </Grid>
 
+        <TextBlock Name="turnDisplay"
+                   TextAlignment="Center"
+                   FontSize="10"
+                   FontWeight="Bold"/>
+
     </StackPanel>
 
 </Window>

@@ -45,10 +45,17 @@ namespace ChessGame.Source.Model {
                 tmpY = pos[1];
 
                 if (tmpX >= 0 && tmpX < Board.GAMESIZE 
-                    && tmpX >= 0 && tmpX < Board.GAMESIZE) {
+                    && tmpY >= 0 && tmpY < Board.GAMESIZE) {
 
                     tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
                     tmpSpace.IsPossibleDestination = true;
+
+                    if (tmpSpace.Occupied 
+                        && tmpSpace.Piece.Color == this.Color) {
+
+                        tmpSpace.IsPossibleDestination = false;
+
+                    }
 
                 }
 

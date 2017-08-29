@@ -50,6 +50,13 @@ namespace ChessGame.Source.Model {
                     tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
                     tmpSpace.IsPossibleDestination = true;
 
+                    if (tmpSpace.Occupied
+                        && tmpSpace.Piece.Color == this.Color) {
+
+                        tmpSpace.IsPossibleDestination = false;
+
+                    }
+
                 }
 
             }

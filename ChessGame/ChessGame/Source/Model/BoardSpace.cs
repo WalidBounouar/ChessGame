@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessGame.Source.Model {
 
-    struct BoardSpace {
+    class BoardSpace {
 
         /// <summary>
         /// Boolean showing if the BoardSpace is occupied by a Piece.
@@ -57,6 +57,13 @@ namespace ChessGame.Source.Model {
             set { isPossibleDestination = value; }
         }
 
+        public BoardSpace() {
+
+            this.occupied = false; //default not occupied.
+            this.isPossibleDestination = false; //default not a destination
+
+        }
+
         /// <summary>
         /// Method that gives appropriate character depending on the state
         /// of the BoardSpace.
@@ -77,24 +84,18 @@ namespace ChessGame.Source.Model {
             return output;
         }
 
-        /*
-        /// <summary>
-        /// Constructor in case the BoardSpace is created with a Piece.
-        /// </summary>
-        /// <param name="piece"> The Piece that will occupy the BoardSpace.</param>
-        public BoardSpace(Piece piece) {
+        public string toString() {
+            string output = ("Occupied : " + this.occupied
+                + ", isPossibleDestination : " + this.isPossibleDestination);
 
-            this.isPossibleDestination = false;
-            this.piece = piece;
-            this.occupied = false;
-            
-            if (piece != null) {      //Maybe revise
-                this.occupied = true;
+            if (this.occupied) {
+                output = output + (", Piece : " + this.piece.Type + this.piece.Color);
             }
 
+            return output;
+                
         }
-        */
-
+        
     }
 
 }

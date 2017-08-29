@@ -66,6 +66,7 @@ namespace ChessGame {
                     BoardSpace correspondingSpace = this.boardModel.getBoardSpace(i, j);
 
                     BoardButton presentButton = new BoardButton(i, j, name, correspondingSpace);
+                    this.buttonArray[i][j] = presentButton;
                     
                     if (!correspondingSpace.Occupied
                         || correspondingSpace.Piece.Color != this.turn) {
@@ -106,10 +107,59 @@ namespace ChessGame {
 
             BoardButton clickedButton = sender as BoardButton;
             Debug.WriteLine(clickedButton.Name);
-            
+
+            this.turn = (this.turn + 1) % 2;
+
+            int x = clickedButton.PosX;
+            int y = clickedButton.PosY;
+
+            BoardSpace space = this.boardModel.getBoardSpace(x, y);
+            space.Piece.getDestinations(x, y);
+
+             
+
+            this.updateView();
 
         }
 
+        private void updateView() {
+
+            //this.showTurn();
+
+            //this.updateDeadPiecesViews();
+
+            //updating board.
+            for (int i = 0; i < this.buttonArray.Length; i++) {
+                for (int j = 0; j < this.buttonArray.Length; j++) {
+
+                    BoardButton presentButton = this.buttonArray[i][j];
+                    BoardSpace presentSpace = this.boardModel.getBoardSpace(i, j); //MAYBE REPLACE BY GETTER
+
+                    Debug.WriteLine(presentSpace.toString());//REMOVE
+
+                    if (presentSpace.IsPossibleDestination) {
+                        presentButton.Background = Brushes.Red;
+                        Debug.WriteLine("The color of button" + i + j + " should be red now."); //REMOVE
+                    }
+
+                    if (!presentSpace.IsPossibleDestination 
+                        && ( !presentSpace.Occupied 
+                             || presentSpace.Piece.Color != this.turn) ) {
+
+                        presentButton.IsEnabled = false;
+
+                    } else {
+                        presentButton.IsEnabled = true;
+                    }
+
+                    presentButton.Content = presentSpace.getBoardSpaceChar();
+
+                }
+
+            }
+
+        }
+        
         /// <summary>
         /// Updated the TextBlocks that shows the dead Pieces.
         /// </summary>

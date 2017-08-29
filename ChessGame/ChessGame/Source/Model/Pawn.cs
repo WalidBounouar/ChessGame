@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,11 @@ namespace ChessGame.Source.Model {
                 && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
 
                 tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                Debug.WriteLine(tmpSpace.toString());//REMOVE
                 tmpSpace.IsPossibleDestination = true;
+                Debug.WriteLine(this.Board.getBoardSpace(tmpX, tmpY).toString());//REMOVE
+
+                Debug.WriteLine("Space " + tmpX + tmpY + " is now a possible destination."); //REMOVE
 
             }
 
@@ -59,6 +64,8 @@ namespace ChessGame.Source.Model {
 
                 tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
+
+                Debug.WriteLine("Space " + tmpX + tmpY + " is now a possible destination."); //REMOVE
 
             }
 
@@ -78,6 +85,8 @@ namespace ChessGame.Source.Model {
                 tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
+                Debug.WriteLine("Space " + tmpX + tmpY + " is now a possible destination."); //REMOVE
+
             }
 
             //Capture diagonal left
@@ -95,6 +104,8 @@ namespace ChessGame.Source.Model {
 
                 tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
+
+                Debug.WriteLine("Space " + tmpX + tmpY + " is now a possible destination."); //REMOVE
 
             }
 

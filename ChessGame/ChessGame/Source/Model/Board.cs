@@ -51,6 +51,15 @@ namespace ChessGame.Source.Model {
                 this.board[i] = new BoardSpace[Board.GAMESIZE];
             }
 
+            //creating all BoardSpace
+            for (int i = 0; i < this.board.Length; i++) {
+                for (int j = 0; j < this.board.Length; j++) {
+
+                    this.board[i][j] = new BoardSpace();
+
+                }
+            }
+
             //initializing the rooks
             this.board[0][0].Piece = new Rook(this, 0); //BoardSpace occupied variable is automatically set to true here.
             this.board[7][0].Piece = new Rook(this, 0);

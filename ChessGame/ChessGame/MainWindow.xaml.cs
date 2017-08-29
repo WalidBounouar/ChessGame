@@ -39,12 +39,25 @@ namespace ChessGame {
         /// </summary>
         private BoardButton[][] buttonArray;
 
+        /// <summary>
+        /// 0 --> choose a piece
+        /// 1 --> choose a destination
+        /// </summary>
+        private int mode;
+
+        /// <summary>
+        /// Last pressed button
+        /// </summary>
+        private BoardButton lastPressed;
+
         public MainWindow() {
 
             InitializeComponent();
 
             this.boardModel = new Board();
             Debug.WriteLine(this.boardModel.toString()); //REMOVE WHEN DONE
+
+            this.mode = 0;//default start by chosing a piece
 
             this.turn = 0; //white starts
             this.showTurn();
@@ -106,27 +119,55 @@ namespace ChessGame {
             //throw new NotImplementedException();            
 
             BoardButton clickedButton = sender as BoardButton;
-            Debug.WriteLine(clickedButton.Name);
-
-            this.turn = (this.turn + 1) % 2;
+            Debug.WriteLine(clickedButton.Name);//REMOVE
 
             int x = clickedButton.PosX;
             int y = clickedButton.PosY;
 
-            BoardSpace space = this.boardModel.getBoardSpace(x, y);
-            space.Piece.getDestinations(x, y);
+            BoardSpace clickedSpace = this.boardModel.getBoardSpace(x, y);
 
-             
+            if (this.mode == 0) { //mode 0 --> chose piece
+
+                clickedSpace.Piece.getDestinations(x, y);
+                this.mode = (this.mode + 1) % 2;
+                this.lastPressed = clickedButton;
+
+            } else { // other mode is chose destinations
+
+                this.movePiece(clickedSpace);
+                this.lastPressed = null;
+
+                this.mode = (this.mode + 1) % 2;
+                this.turn = (this.turn + 1) % 2;//. only change tuen after destination chosen.
+
+            }
 
             this.updateView();
+            Debug.WriteLine(this.boardModel.toString());//REMOVE
+
+        }
+
+        private void movePiece(BoardSpace destination) {
+
+            if (destination.Occupied) {
+                this.boardModel.killPiece(destination);
+            }
+
+            int sourceX = this.lastPressed.PosX;
+            int sourceY = this.lastPressed.PosY;
+            BoardSpace sourceSpace = this.boardModel.getBoardSpace(sourceX, sourceY);
+
+            destination.Piece = sourceSpace.Piece; //move Piece, auto set Occupied to true
+
+            sourceSpace.Piece = null;//auto set Occupied to false
 
         }
 
         private void updateView() {
 
-            //this.showTurn();
+            this.showTurn();
 
-            //this.updateDeadPiecesViews();
+            this.updateDeadPiecesViews();
 
             //updating board.
             for (int i = 0; i < this.buttonArray.Length; i++) {
@@ -135,11 +176,13 @@ namespace ChessGame {
                     BoardButton presentButton = this.buttonArray[i][j];
                     BoardSpace presentSpace = this.boardModel.getBoardSpace(i, j); //MAYBE REPLACE BY GETTER
 
-                    Debug.WriteLine(presentSpace.toString());//REMOVE
+                    if (mode == 0) { //if mode is now chose piece, we clear the possible distinations.
+                        presentButton.ClearValue(BoardButton.BackgroundProperty); //clears background color
+                        presentSpace.IsPossibleDestination = false;
+                    }
 
                     if (presentSpace.IsPossibleDestination) {
                         presentButton.Background = Brushes.Red;
-                        Debug.WriteLine("The color of button" + i + j + " should be red now."); //REMOVE
                     }
 
                     if (!presentSpace.IsPossibleDestination 
@@ -154,6 +197,8 @@ namespace ChessGame {
 
                     presentButton.Content = presentSpace.getBoardSpaceChar();
 
+                    Debug.WriteLine(presentSpace.toString());//REMOVE
+                    
                 }
 
             }

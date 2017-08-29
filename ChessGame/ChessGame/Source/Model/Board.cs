@@ -101,9 +101,9 @@ namespace ChessGame.Source.Model {
             return this.board[posX][posY];
         }
 
-        public void killPiece(int posX, int posY) { //fix duplicate keys problem
+        public void killPiece(BoardSpace space) { 
 
-            Piece tmp = this.board[posX][posY].Piece;
+            Piece tmp = space.Piece;
             int color = tmp.Color;
             tmp.Alive = false;
 
@@ -124,9 +124,9 @@ namespace ChessGame.Source.Model {
                 }
             }
             
-            this.board[posX][posY].Piece = null; //maybe replace by a custom method
-            this.board[posX][posY].Occupied = false; //maybe replace by a custom method
-            this.board[posX][posY].IsPossibleDestination = false; //remove if you take care during view update method
+            space.Piece = null; //maybe replace by a custom method
+            space.Occupied = false; //maybe replace by a custom method
+            space.IsPossibleDestination = false; //remove if you take care during view update method
 
         }
 

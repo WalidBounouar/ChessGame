@@ -47,6 +47,17 @@ namespace ChessGame.Source {
 
         }
 
+        /// <summary>
+        /// Checks is BoardButtons are the same, based on X and Y coordinates.
+        /// </summary>
+        /// <param name="other">The BoarButton being compared.</param>
+        /// <returns></returns>
+        public bool Equals(BoardButton other) {
+
+            return (this.posX == other.PosX && this.posY == other.posY);
+
+        }
+
     }
 
 }

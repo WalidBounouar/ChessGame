@@ -60,9 +60,9 @@ namespace ChessGame {
             this.mode = 0;//default start by chosing a piece
 
             this.turn = 0; //white starts
-            this.showTurn();
+            this.ShowTurn();
 
-            this.updateDeadPiecesViews();
+            this.UpdateDeadPiecesViews();
 
             //initializing the buttonArray
             this.buttonArray = new BoardButton[Board.GameSize][]; //Change Game size
@@ -105,7 +105,7 @@ namespace ChessGame {
         /// <summary>
         /// Updated the view to show who's turn it is.
         /// </summary>
-        private void showTurn() {
+        private void ShowTurn() {
 
             if (this.turn == 0) {
                 this.turnDisplay.Text = "White Turn";
@@ -136,8 +136,10 @@ namespace ChessGame {
 
                 if (!clickedButton.Equals(this.lastPressed)) { //if button clicked is not the same as before
 
-                    this.movePiece(clickedSpace);
+                    this.MovePiece(clickedSpace);
                     this.lastPressed = null;
+
+                    clickedSpace.Piece.PlayedOnce();
 
                     this.turn = (this.turn + 1) % 2;//. only change turn after destination chosen.
 
@@ -147,12 +149,20 @@ namespace ChessGame {
 
             }
 
-            this.updateView();
+            this.UpdateView();
             Debug.WriteLine(this.boardModel.ToString());//REMOVE
+
+            int winner = this.GameWon();
+
+            if (winner == 0) {
+                MessageBox.Show("White wins.");
+            } else if (winner == 1) {
+                MessageBox.Show("Black wins.");
+            }
 
         }
 
-        private void movePiece(BoardSpace destination) {
+        private void MovePiece(BoardSpace destination) {
 
             if (destination.Occupied) {
                 this.boardModel.KillPiece(destination);
@@ -168,11 +178,37 @@ namespace ChessGame {
 
         }
 
-        private void updateView() {
+        /// <summary>
+        /// Checks if someone won the game
+        /// -1 --> no one
+        ///  0 --> white
+        ///  1 --> black
+        /// </summary>
+        /// <returns>An int representing the winner (or no winner). </returns>
+        private int GameWon() {
 
-            this.showTurn();
+            //foreach is not necessary as king should be first, but does not hurt to use foreach
+            foreach (Piece piece in this.boardModel.DeadWhites) {
+                if (piece.Type == "king") { //Maybe change "==" to Equals
+                    return 1; //black --> 1
+                }
+            }
 
-            this.updateDeadPiecesViews();
+            foreach (Piece piece in this.boardModel.DeadBlacks) {
+                if (piece.Type == "king") { //Maybe change "==" to Equals
+                    return 0; //white --> 0
+                }
+            }
+
+            return -1;
+
+        }
+
+        private void UpdateView() {
+
+            this.ShowTurn();
+
+            this.UpdateDeadPiecesViews();
 
             //updating board.
             for (int i = 0; i < this.buttonArray.Length; i++) {
@@ -221,7 +257,7 @@ namespace ChessGame {
         /// <summary>
         /// Updated the TextBlocks that shows the dead Pieces.
         /// </summary>
-        private void updateDeadPiecesViews() {
+        private void UpdateDeadPiecesViews() {
 
 
             StringBuilder deadWhitesString = new StringBuilder();

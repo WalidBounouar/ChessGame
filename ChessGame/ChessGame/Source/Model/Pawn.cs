@@ -74,7 +74,8 @@ namespace ChessGame.Source.Model {
 
             if (tmpX < Board.GameSize && tmpX >= 0
                 && tmpY < Board.GameSize && tmpY >= 0
-                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
                 tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
@@ -92,7 +93,8 @@ namespace ChessGame.Source.Model {
 
             if (tmpX < Board.GameSize && tmpX >= 0
                 && tmpY < Board.GameSize && tmpY >= 0
-                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
                 tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;

@@ -20,7 +20,7 @@ namespace ChessGame.Source.Model {
 
         }
 
-        public override void getDestinations(int posX, int posY) {
+        public override void SetDestinations(int posX, int posY) {
             //throw new NotImplementedException();
 
             int tmpX;
@@ -31,21 +31,21 @@ namespace ChessGame.Source.Model {
             tmpX = posX;
             tmpY = posY + 1;
 
-            while (tmpY < Board.GAMESIZE
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+            while (tmpY < Board.GameSize
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
                 tmpY++;
 
             }
             //Check in case the loop stoped because we found occupied space
-            if (tmpY < Board.GAMESIZE
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied
-                && this.Board.getBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
+            if (tmpY < Board.GameSize
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -55,9 +55,9 @@ namespace ChessGame.Source.Model {
             tmpY = posY - 1;
 
             while (tmpY >= 0
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
                 tmpY--;
@@ -65,10 +65,10 @@ namespace ChessGame.Source.Model {
             }
             //Check in case the loop stoped because we found occupied space
             if (tmpY >= 0
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied
-                && this.Board.getBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -77,21 +77,21 @@ namespace ChessGame.Source.Model {
             tmpX = posX + 1;
             tmpY = posY;
 
-            while (tmpX < Board.GAMESIZE
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+            while (tmpX < Board.GameSize
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
                 tmpX++;
 
             }
             //Check in case the loop stoped because we found occupied space
-            if (tmpX < Board.GAMESIZE
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied
-                && this.Board.getBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
+            if (tmpX < Board.GameSize
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -101,9 +101,9 @@ namespace ChessGame.Source.Model {
             tmpY = posY;
 
             while (tmpX >= 0
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
                 tmpX--;
@@ -111,10 +111,10 @@ namespace ChessGame.Source.Model {
             }
             //Check in case the loop stoped because we found occupied space
             if (tmpX >= 0
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied
-                && this.Board.getBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && this.Board.GetBoardSpace(tmpX, tmpY).Piece.Color != this.Color) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }

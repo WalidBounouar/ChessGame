@@ -11,7 +11,7 @@ namespace ChessGame.Source.Model {
         /// <summary>
         /// Variable showing size of game. Constant.
         /// </summary>
-        public const int GAMESIZE = 8;
+        public const int GameSize = 8;
 
         /// <summary>
         /// Jagged array of BoardSpace representing the game board.
@@ -46,9 +46,9 @@ namespace ChessGame.Source.Model {
             this.deadWhites = new LinkedList<Piece>();
 
             //initializing the jagged array
-            this.board = new BoardSpace[Board.GAMESIZE][];
+            this.board = new BoardSpace[Board.GameSize][];
             for (int i = 0; i < this.board.Length; i++) {
-                this.board[i] = new BoardSpace[Board.GAMESIZE];
+                this.board[i] = new BoardSpace[Board.GameSize];
             }
 
             //creating all BoardSpace
@@ -87,21 +87,21 @@ namespace ChessGame.Source.Model {
             this.board[4][7].Piece = new King(this, 1);
 
             //initializing the pawns
-            for (int i = 0; i < Board.GAMESIZE; i++) {
+            for (int i = 0; i < Board.GameSize; i++) {
                 this.board[i][1].Piece = new Pawn(this, 0);
             }
 
-            for (int i = 0; i < Board.GAMESIZE; i++) {
+            for (int i = 0; i < Board.GameSize; i++) {
                 this.board[i][6].Piece = new Pawn(this, 1);
             }
 
         }
 
-        public BoardSpace getBoardSpace(int posX, int posY) {
+        public BoardSpace GetBoardSpace(int posX, int posY) {
             return this.board[posX][posY];
         }
 
-        public void killPiece(BoardSpace space) { 
+        public void KillPiece(BoardSpace space) { 
 
             Piece tmp = space.Piece;
             int color = tmp.Color;
@@ -134,23 +134,23 @@ namespace ChessGame.Source.Model {
         /// String representation of the state of the Board.
         /// </summary>
         /// <returns> String representing the Board. </returns>
-        public string toString() {
+        public string ToString() {
 
             StringBuilder output = new StringBuilder();
 
-            output.Append(this.deadPiecesToString(this.deadBlacks) + "\n");
+            output.Append(this.DeadPiecesToString(this.deadBlacks) + "\n");
 
             output.Append("    a    b    c    d    e    f    g   h" + "\n");
 
             output.Append("  ┌────┬────┬────┬────┬────┬────┬────┬────┐" + "\n");
 
-            for (int i = (Board.GAMESIZE * 2) - 1; i > 0; i--) {
+            for (int i = (Board.GameSize * 2) - 1; i > 0; i--) {
 
                 if (i % 2 != 0) {
 
                     output.Append((i / 2) + 1 + " ");
 
-                    for (int j = 0; j < Board.GAMESIZE; j++) {
+                    for (int j = 0; j < Board.GameSize; j++) {
 
                         if (this.board[j][(i / 2)].Occupied && this.board[j][(i / 2)].IsPossibleDestination) {
                             output.Append("│ X  ");
@@ -174,7 +174,7 @@ namespace ChessGame.Source.Model {
 
             output.Append("  └────┴────┴────┴────┴────┴────┴────┴────┘" + "\n");
 
-            output.Append(this.deadPiecesToString(this.deadWhites) + "\n");
+            output.Append(this.DeadPiecesToString(this.deadWhites) + "\n");
 
             return output.ToString();
         }
@@ -185,7 +185,7 @@ namespace ChessGame.Source.Model {
         /// </summary>
         /// <param name="deadPieces"> The LinkedList to convert to string. </param>
         /// <returns> String representation of the LinkedList in argument. </returns>
-        private string deadPiecesToString(LinkedList<Piece> deadPieces) {
+        private string DeadPiecesToString(LinkedList<Piece> deadPieces) {
 
             StringBuilder output = new StringBuilder();
 

@@ -43,7 +43,7 @@ namespace ChessGame.Source {
             this.Name = name;
             this.boardSpace = boardSpace;
 
-            this.Content = this.boardSpace.getBoardSpaceChar();
+            this.Content = this.boardSpace.GetBoardSpaceChar();
 
         }
 

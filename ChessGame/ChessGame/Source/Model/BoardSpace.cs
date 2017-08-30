@@ -73,7 +73,7 @@ namespace ChessGame.Source.Model {
         /// else --> a space
         /// </summary>
         /// <returns> The appriate char reprsenting the state of the BoardSpace.</returns>
-        public char getBoardSpaceChar() {
+        public char GetBoardSpaceChar() {
 
             char output = '-';
 
@@ -84,7 +84,7 @@ namespace ChessGame.Source.Model {
             return output;
         }
 
-        public string toString() {
+        public string ToString() {
             string output = ("Occupied : " + this.occupied
                 + ", isPossibleDestination : " + this.isPossibleDestination);
 

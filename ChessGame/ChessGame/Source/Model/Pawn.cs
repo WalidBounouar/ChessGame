@@ -21,7 +21,7 @@ namespace ChessGame.Source.Model {
 
         }
 
-        public override void getDestinations(int posX, int posY) {
+        public override void SetDestinations(int posX, int posY) {
             //throw new NotImplementedException();
 
             int tmpX;
@@ -37,11 +37,11 @@ namespace ChessGame.Source.Model {
             }
 
             if (!this.Played 
-                && tmpY < Board.GAMESIZE 
+                && tmpY < Board.GameSize 
                 && tmpY >= 0
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -54,11 +54,11 @@ namespace ChessGame.Source.Model {
                 tmpY = posY - 1;
             }
 
-            if (tmpY < Board.GAMESIZE
+            if (tmpY < Board.GameSize
                 && tmpY >= 0
-                && !this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -72,11 +72,11 @@ namespace ChessGame.Source.Model {
                 tmpY = posY - 1;
             }
 
-            if (tmpX < Board.GAMESIZE && tmpX >= 0
-                && tmpY < Board.GAMESIZE && tmpY >= 0
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+            if (tmpX < Board.GameSize && tmpX >= 0
+                && tmpY < Board.GameSize && tmpY >= 0
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }
@@ -90,11 +90,11 @@ namespace ChessGame.Source.Model {
                 tmpY = posY - 1;
             }
 
-            if (tmpX < Board.GAMESIZE && tmpX >= 0
-                && tmpY < Board.GAMESIZE && tmpY >= 0
-                && this.Board.getBoardSpace(tmpX, tmpY).Occupied) {
+            if (tmpX < Board.GameSize && tmpX >= 0
+                && tmpY < Board.GameSize && tmpY >= 0
+                && this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
 
-                tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;
 
             }

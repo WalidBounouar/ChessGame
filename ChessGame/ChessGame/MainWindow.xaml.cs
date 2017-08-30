@@ -55,7 +55,7 @@ namespace ChessGame {
             InitializeComponent();
 
             this.boardModel = new Board();
-            Debug.WriteLine(this.boardModel.toString()); //REMOVE WHEN DONE
+            Debug.WriteLine(this.boardModel.ToString()); //REMOVE WHEN DONE
 
             this.mode = 0;//default start by chosing a piece
 
@@ -65,9 +65,9 @@ namespace ChessGame {
             this.updateDeadPiecesViews();
 
             //initializing the buttonArray
-            this.buttonArray = new BoardButton[Board.GAMESIZE][]; //Change Game size
+            this.buttonArray = new BoardButton[Board.GameSize][]; //Change Game size
             for (int i = 0; i < this.buttonArray.Length; i++) {
-                this.buttonArray[i] = new BoardButton[Board.GAMESIZE];
+                this.buttonArray[i] = new BoardButton[Board.GameSize];
             }
 
             //creating the buttons for the board.
@@ -76,7 +76,7 @@ namespace ChessGame {
 
                     string name = "space" + i + j;
 
-                    BoardSpace correspondingSpace = this.boardModel.getBoardSpace(i, j);
+                    BoardSpace correspondingSpace = this.boardModel.GetBoardSpace(i, j);
 
                     BoardButton presentButton = new BoardButton(i, j, name, correspondingSpace);
                     this.buttonArray[i][j] = presentButton;
@@ -124,11 +124,11 @@ namespace ChessGame {
             int x = clickedButton.PosX;
             int y = clickedButton.PosY;
 
-            BoardSpace clickedSpace = this.boardModel.getBoardSpace(x, y);
+            BoardSpace clickedSpace = this.boardModel.GetBoardSpace(x, y);
 
             if (this.mode == 0) { //mode 0 --> chose piece
 
-                clickedSpace.Piece.getDestinations(x, y);
+                clickedSpace.Piece.SetDestinations(x, y);
                 this.mode = (this.mode + 1) % 2;
                 this.lastPressed = clickedButton;
 
@@ -138,24 +138,24 @@ namespace ChessGame {
                 this.lastPressed = null;
 
                 this.mode = (this.mode + 1) % 2;
-                this.turn = (this.turn + 1) % 2;//. only change tuen after destination chosen.
+                this.turn = (this.turn + 1) % 2;//. only change turn after destination chosen.
 
             }
 
             this.updateView();
-            Debug.WriteLine(this.boardModel.toString());//REMOVE
+            Debug.WriteLine(this.boardModel.ToString());//REMOVE
 
         }
 
         private void movePiece(BoardSpace destination) {
 
             if (destination.Occupied) {
-                this.boardModel.killPiece(destination);
+                this.boardModel.KillPiece(destination);
             }
 
             int sourceX = this.lastPressed.PosX;
             int sourceY = this.lastPressed.PosY;
-            BoardSpace sourceSpace = this.boardModel.getBoardSpace(sourceX, sourceY);
+            BoardSpace sourceSpace = this.boardModel.GetBoardSpace(sourceX, sourceY);
 
             destination.Piece = sourceSpace.Piece; //move Piece, auto set Occupied to true
 
@@ -174,7 +174,7 @@ namespace ChessGame {
                 for (int j = 0; j < this.buttonArray.Length; j++) {
 
                     BoardButton presentButton = this.buttonArray[i][j];
-                    BoardSpace presentSpace = this.boardModel.getBoardSpace(i, j); //MAYBE REPLACE BY GETTER
+                    BoardSpace presentSpace = this.boardModel.GetBoardSpace(i, j); //MAYBE REPLACE BY GETTER
 
                     if (mode == 0) { //if mode is now chose piece, we clear the possible distinations.
                         presentButton.ClearValue(BoardButton.BackgroundProperty); //clears background color
@@ -195,9 +195,9 @@ namespace ChessGame {
                         presentButton.IsEnabled = true;
                     }
 
-                    presentButton.Content = presentSpace.getBoardSpaceChar();
+                    presentButton.Content = presentSpace.GetBoardSpaceChar();
 
-                    Debug.WriteLine(presentSpace.toString());//REMOVE
+                    Debug.WriteLine(presentSpace.ToString());//REMOVE
                     
                 }
 

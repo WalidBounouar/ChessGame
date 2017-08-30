@@ -101,7 +101,7 @@ namespace ChessGame.Source.Model {
         /// <summary>
         /// Changes played variable to true.
         /// </summary>
-        public void playedOnce() {
+        public void PlayedOnce() {
             this.played = true;
         }
 
@@ -111,7 +111,7 @@ namespace ChessGame.Source.Model {
         /// </summary>
         /// <param name="posX"> Position on X axis.</param>
         /// <param name="posY"> Position on Y axis.</param>
-        public abstract void getDestinations(int posX, int posY);
+        public abstract void SetDestinations(int posX, int posY);
 
      }
 

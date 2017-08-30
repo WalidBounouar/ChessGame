@@ -20,7 +20,7 @@ namespace ChessGame.Source.Model {
 
         }
 
-        public override void getDestinations(int posX, int posY) {
+        public override void SetDestinations(int posX, int posY) {
             //throw new NotImplementedException();
 
             //jagged array of all 8 possible destinations
@@ -44,10 +44,10 @@ namespace ChessGame.Source.Model {
                 tmpX = pos[0];
                 tmpY = pos[1];
 
-                if (tmpX >= 0 && tmpX < Board.GAMESIZE 
-                    && tmpY >= 0 && tmpY < Board.GAMESIZE) {
+                if (tmpX >= 0 && tmpX < Board.GameSize 
+                    && tmpY >= 0 && tmpY < Board.GameSize) {
 
-                    tmpSpace = this.Board.getBoardSpace(tmpX, tmpY);
+                    tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                     tmpSpace.IsPossibleDestination = true;
 
                     if (tmpSpace.Occupied 

@@ -41,6 +41,14 @@ namespace ChessGame.Source.Model {
         /// </summary>
         public Board() {
 
+            this.Reset();
+
+        }
+
+        /// <summary>
+        /// Resets board to initial state.
+        /// </summary>
+        public void Reset() {
             //initializing the dictionaries (deadpieces)
             this.deadBlacks = new LinkedList<Piece>();
             this.deadWhites = new LinkedList<Piece>();
@@ -94,7 +102,6 @@ namespace ChessGame.Source.Model {
             for (int i = 0; i < Board.GameSize; i++) {
                 this.board[i][6].Piece = new Pawn(this, 1);
             }
-
         }
 
         public BoardSpace GetBoardSpace(int posX, int posY) {

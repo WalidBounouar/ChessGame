@@ -154,11 +154,7 @@ namespace ChessGame {
 
             int winner = this.GameWon();
 
-            if (winner == 0) {
-                MessageBox.Show("White wins.");
-            } else if (winner == 1) {
-                MessageBox.Show("Black wins.");
-            }
+            this.AskForNewGame(winner);
 
         }
 
@@ -202,6 +198,35 @@ namespace ChessGame {
 
             return -1;
 
+        }
+
+        private void AskForNewGame(int winner) {
+
+            string message;
+
+            if ( winner == 0) {
+                message = "White wins! Do you want to play a new game?";
+            } else if (winner == 1) {
+                message = "White wins! Do you want to play a new game?";
+            } else {
+                return; //if no winner, we just exit method
+            }
+
+            string title = "Game Won! New game?";
+            MessageBoxResult choice = MessageBox.Show(
+                message,
+                title,
+                MessageBoxButton.YesNo, //button options
+                MessageBoxImage.Question);
+
+            if (choice == MessageBoxResult.Yes) {
+                this.boardModel.Reset();
+                this.turn = 0;//REMOVE if change turn from MainWindow to Board.
+                this.UpdateView();
+                Debug.WriteLine(this.boardModel.ToString());//REMOVE
+            } else {
+                Application.Current.Shutdown();
+            }
         }
 
         private void UpdateView() {

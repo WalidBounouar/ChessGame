@@ -134,11 +134,16 @@ namespace ChessGame {
 
             } else { // other mode is chose destinations
 
-                this.movePiece(clickedSpace);
-                this.lastPressed = null;
+                if (!clickedButton.Equals(this.lastPressed)) { //if button clicked is not the same as before
 
-                this.mode = (this.mode + 1) % 2;
-                this.turn = (this.turn + 1) % 2;//. only change turn after destination chosen.
+                    this.movePiece(clickedSpace);
+                    this.lastPressed = null;
+
+                    this.turn = (this.turn + 1) % 2;//. only change turn after destination chosen.
+
+                }
+
+                this.mode = (this.mode + 1) % 2; //always change mode.
 
             }
 
@@ -176,7 +181,7 @@ namespace ChessGame {
                     BoardButton presentButton = this.buttonArray[i][j];
                     BoardSpace presentSpace = this.boardModel.GetBoardSpace(i, j); //MAYBE REPLACE BY GETTER
 
-                    if (mode == 0) { //if mode is now chose piece, we clear the possible distinations.
+                    if (mode == 0) { //if mode is now chose piece, we clear the possible destinations.
                         presentButton.ClearValue(BoardButton.BackgroundProperty); //clears background color
                         presentSpace.IsPossibleDestination = false;
                     }
@@ -193,6 +198,14 @@ namespace ChessGame {
 
                     } else {
                         presentButton.IsEnabled = true;
+                    }
+
+                    //Condition in case we're in chose destination mode
+                    //only destinations and the pressed button are enabled
+                    if(this.mode == 1 
+                        && !presentSpace.IsPossibleDestination 
+                        && !presentButton.Equals(this.lastPressed)) {
+                        presentButton.IsEnabled = false;
                     }
 
                     presentButton.Content = presentSpace.GetBoardSpaceChar();

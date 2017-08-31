@@ -139,7 +139,15 @@ namespace ChessGame {
                     this.MovePiece(clickedSpace);
                     this.lastPressed = null;
 
-                    clickedSpace.Piece.PlayedOnce();
+                    //we promote pawns getting to the end fo board
+                    if ( (y == 0 || y == 7 ) 
+                        && clickedSpace.Piece.Type == "pawn") {
+
+                        this.Promote(clickedSpace);
+
+                    }
+
+                    clickedSpace.Piece.PlayedOnce(); //techically redundant, but no harm to efficiency.
 
                     this.turn = (this.turn + 1) % 2;//. only change turn after destination chosen.
 
@@ -171,6 +179,36 @@ namespace ChessGame {
             destination.Piece = sourceSpace.Piece; //move Piece, auto set Occupied to true
 
             sourceSpace.Piece = null;//auto set Occupied to false
+
+        }
+
+        private void Promote(BoardSpace space) {
+
+            string choice;
+
+            PromotionDialogue dialogue = new PromotionDialogue();
+            dialogue.ShowDialog();
+            choice = dialogue.Choice;
+
+            int presentColor = space.Piece.Color;
+
+            switch (choice) {
+                case "queen":
+                    space.Piece = new Queen(this.boardModel, presentColor);
+                    break;
+                case "knight":
+                    space.Piece = new Knight(this.boardModel, presentColor);
+                    break;
+                case "rook":
+                    space.Piece = new Rook(this.boardModel, presentColor);
+                    break;
+                case "bishop":
+                    space.Piece = new Bishop(this.boardModel, presentColor);
+                    break;
+                case "pawn":
+                    space.Piece = new Pawn(this.boardModel, presentColor);
+                    break;
+            }
 
         }
 
@@ -207,7 +245,7 @@ namespace ChessGame {
             if ( winner == 0) {
                 message = "White wins! Do you want to play a new game?";
             } else if (winner == 1) {
-                message = "White wins! Do you want to play a new game?";
+                message = "Black wins! Do you want to play a new game?";
             } else {
                 return; //if no winner, we just exit method
             }

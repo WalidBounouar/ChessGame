@@ -8,7 +8,9 @@
         Title="PromotionDialogue" Height="107.676" Width="300">
     <StackPanel>
         
-        <TextBlock Text="You can promote the Pawn, chose a piece below."/>
+        <TextBlock Text="You can promote the Pawn, chose a piece below."
+                   FontSize="13"
+                   TextAlignment="Center"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
 

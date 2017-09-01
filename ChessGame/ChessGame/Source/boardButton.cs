@@ -45,6 +45,8 @@ namespace ChessGame.Source {
 
             this.Content = this.boardSpace.GetBoardSpaceChar();
 
+            this.FontSize = 25;
+
         }
 
         /// <summary>

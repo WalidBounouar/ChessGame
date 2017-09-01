@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="348.466" Width="417.918">
+        Title="MainWindow" Height="475.181" Width="417.918">
 
     <StackPanel>
 
@@ -50,7 +50,7 @@
 
         <TextBlock Name="turnDisplay"
                    TextAlignment="Center"
-                   FontSize="10"
+                   FontSize="20"
                    FontWeight="Bold"/>
 
     </StackPanel>

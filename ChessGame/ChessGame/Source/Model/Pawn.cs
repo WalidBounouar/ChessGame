@@ -30,16 +30,20 @@ namespace ChessGame.Source.Model {
 
             //Advance by two
             tmpX = posX;
+            int otherY;
             if (this.Color == 0) { //advance is different for white or black
                 tmpY = posY + 2;
+                otherY = posY + 1;
             } else {
                 tmpY = posY - 2;
+                otherY = posY - 1;
             }
 
             if (!this.Played 
                 && tmpY < Board.GameSize 
                 && tmpY >= 0
-                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied) {
+                && !this.Board.GetBoardSpace(tmpX, tmpY).Occupied
+                && !this.Board.GetBoardSpace(tmpX, otherY).Occupied) {
 
                 tmpSpace = this.Board.GetBoardSpace(tmpX, tmpY);
                 tmpSpace.IsPossibleDestination = true;

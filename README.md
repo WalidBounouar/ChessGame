@@ -7,3 +7,5 @@ Decide on chess game as I can practice a lot of concepts and coding it seemed li
 The game is missing some of the more obscure chess moves, but you can promote Pawns.
 
 Simple GUI made in WPF.
+
+I created a UML in an Excel spreadsheet. Fairly useless now, I simply used it to organize my ideas when I started.
